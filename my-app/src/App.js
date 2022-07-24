@@ -26,7 +26,20 @@ function App() {
 
   const [customers, setCustomers] = useState({items:[]})
   const [packages, setPackages] = useState({items:[]})
-  const [invoices, setInvoices] = useState([]);
+  const [invoices, setInvoices] = useState({items:[
+    {
+      name:'Dave',
+      idInvoice: 1,
+      weight: "3kg",
+      price: 10,
+  },
+  {
+    name:'Marry',
+    idInvoice: 2,
+    weight: "32kg",
+    price: 20,
+  }
+  ]});
 
 
 
@@ -70,22 +83,27 @@ const handelDeletePackages = (uniqe_Id) => {
   let items = packages.items;
   let i = items.findIndex(item => item.id === uniqe_Id)
   items.splice(i,1)
-  setCustomers({items})
+  setPackages({items})
   
  }
 
  let customerName;
+ let customerId;
+
 
  const handelName = (uniqe_Id) => {
+
 
   let IdOfName = customers.items.find(e => e.id === uniqe_Id )
   
 
-    for(let obj in IdOfName){
-      customerName = IdOfName[obj]
-      
-    }
-    return customerName
+  for(let obj in IdOfName){
+    customerName = IdOfName[obj]
+    
+  }
+  return customerName
+  
+  
 
 }
 
@@ -126,9 +144,12 @@ const handelDeletePackages = (uniqe_Id) => {
               customers={customers}
               invoices={invoices}
               setInvoices={setInvoices}
+              customeruniqeId={customerId}
                />} />
 
               <Route path='invoices' element={<DisplayInvoices
+              invoices={invoices}
+
                />} 
                 />
            

@@ -7,17 +7,17 @@ import { Box,
 
 import { useState } from "react";
 
-const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoices,setInvoices}) => {
+const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoices,setInvoices,customeruniqeId}) => {
 
 
     const [idInvoices,setIdInvoices] =useState(1)
-    const [idPackages,setIdPackages] =useState('')
-    const [customerId,setCustomerId] = useState(1)
+    // const [idPackages,setIdPackages] =useState('')
+    // const [customerId,setCustomerId] = useState(customeruniqeId)
 
     const [customername,setCustomer] = useState(customerName)
     const [weight,setWeight] = useState('')
     const [price,setPrice] = useState(1)
-    const [shippingOrder,setShippingOrder] = useState(1)
+    // const [shippingOrder,setShippingOrder] = useState(1)
     
     
 
@@ -26,35 +26,20 @@ const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoice
     const handelPackage =(e) => {
         e.preventDefault();
     
-        let dataOfPackages ={
-          
-          id:idPackages,
-          weight,
-          customerid:customerId,
-          price,
-          shippingOrder,
     
-        }
-        let dataOfcustomer ={
-          id:idInvoices,
-          name:customername,
-
-        }
+       
         let dataOfInvoices = [{
           name:customername,
           idInvoice:idInvoices,
-          idPackages:idPackages,
           weight:weight,
           price:price,
-          customerId:customerId,
-          shippingOrder:shippingOrder,
 
 
         }]
 
-        setdata({items: pack.items.concat(dataOfPackages)})
-        setCustomers({items: customers.items.concat(dataOfcustomer)})
-        setInvoices(dataOfInvoices)
+      
+        setInvoices({items: invoices.items.concat(dataOfInvoices)})
+
     localStorage.setItem('invoices', JSON.stringify(invoices))
     
       }
@@ -79,23 +64,9 @@ const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoice
               sx={{marginTop:'10px',marginLeft:'10px'}}
             />
 
-              <TextField
-        id="outlined-number"
-        label="id_Package"
-        type="text"
-        value={idPackages}
-        onChange={e => setIdPackages(e.target.value)}
-
-        
-
-        InputLabelProps={{
-          shrink: true,
-              }}
-              sx={{marginTop:'10px',marginLeft:'10px'}}
-            />
 
     <TextField
-              
+              disabled
               id="outlined-number"
               label="customer Name"
               type="text"
@@ -118,17 +89,7 @@ const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoice
               }}
               sx={{marginTop:'10px',marginLeft:'10px'}}
             />
-              <TextField
-              id="outlined-number"
-              label="CustomerId"
-              type="number"
-              value={customerId}
-              onChange={e => setCustomerId(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              sx={{marginTop:'10px',marginLeft:'10px'}}
-            />
+     
 
     <TextField
               id="outlined-number"
@@ -141,17 +102,7 @@ const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoice
               }}
               sx={{marginTop:'10px',marginLeft:'10px'}}
             />
-              <TextField
-              id="outlined-number"
-              label="shippingOrder"
-              type="number"
-              value={shippingOrder}
-              onChange={e => setShippingOrder(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              sx={{marginTop:'10px',marginLeft:'10px'}}
-            />
+     
              <Button variant='contained' type="submit"  sx={{marginTop:'10px'}}>
                 Add
             </Button>

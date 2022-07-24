@@ -13,31 +13,62 @@ import TableRow from '@mui/material/TableRow';
 
 
 
-let data =JSON.parse( localStorage.getItem( 'invoices' ) );
+// let data =JSON.parse( localStorage.getItem( 'invoices' ) );
+
+const  date = new Date()
 
 
-const DisplayInvoices = () => {
+
+const DisplayInvoices = ({invoices}) => {
+
 
 
     return (
         <Box marginTop='150px'>
+          
           {
-            data.map(e => {
+            invoices.items.map(e => {
               return(
-                <TableContainer sx={{ maxHeight: 440 }} key={e.shippingOrder}>
+                <TableContainer sx={{ maxHeight: 440 }} key={e.idInvoice}>
+                 
                 <Table stickyHeader aria-label="sticky table"  >
+                  
                     <TableHead >
+                    <TableRow  >
+                      <TableCell align="center" colSpan={1}>
+                        Date:
+                        </TableCell>
+
+                        <TableCell align="center" colSpan={1}>
+                         {date.getDate()}/ {date.getMonth() + 1}/{date.getFullYear()}
+                        </TableCell>
+                        <TableCell align="center" colSpan={1}>
+                          Hours :
+                        </TableCell>
+                        <TableCell align="center" colSpan={3}>
+                        { date.getHours()} - {date.getMinutes()} - {date.getSeconds()}
+                        </TableCell>
+                        </TableRow>
+
                       <TableRow  >
-                        <TableCell align="center" colSpan={2}>
+                      <TableCell align="center" colSpan={1}>
+                            Name:
+                        </TableCell>
+
+                        <TableCell align="center" colSpan={1}>
                             {e.name}
+                        </TableCell>
+                        <TableCell align="center" colSpan={1}>
+                            IdInvoice:
                         </TableCell>
                         <TableCell align="center" colSpan={3}>
                           {e.idInvoice}
                         </TableCell>
+                      
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                    {data.map((row) => {
+                    {/* {invoices.map((row) => {
     
                       return (
                         <TableRow
@@ -52,9 +83,52 @@ const DisplayInvoices = () => {
                         
                         </TableRow>
                       )
-                    })}
+                    })} */}
+                      <TableRow>
+                      <TableCell align="center" colSpan={1}>
+                          Weight:
+                          </TableCell>
+                        <TableCell align="center" colSpan={1}>
+                            {e.weight}
+                        </TableCell>
+
+                        <TableCell align="center" colSpan={1}>
+                          Price:
+                          </TableCell>
+                        <TableCell align="center" colSpan={3}>
+                          {e.price}
+                        </TableCell>
+                        </TableRow>
+
+
+                        <TableRow>
+                        <TableCell align="center" colSpan={1}>
+                          Totalweight:
+                          </TableCell>
+
+                          <TableCell colSpan={1}>
+                          {e.weight}
+                        </TableCell>
+                        {/* <TableCell rowSpan={2} /> */}
+                        <TableCell align="center" colSpan={1}>
+                            TotalPrice:
+                        </TableCell>
+                        <TableCell colSpan={1}>
+                          {e.price}
+                        </TableCell>
+                        
+                        </TableRow>
+                        
+                          
+                        
+
+
                   </TableBody>
+                
                 </Table>
+                <br/>
+                  <br/>
+                  <br/>
               </TableContainer>
               )
             })
