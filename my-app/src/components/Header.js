@@ -97,18 +97,30 @@ export default function Header() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['customers', 'packages', 'invoices'].map((text, index) => (
-            <ListItem key={text} disablePadding >
-            <Link to ={ `/${text}`}  >
-              <ListItemButton >
-               
+    
+          <ListItem disablePadding>
+            <Link to='/'>
+            <ListItemButton>
+            <ListItemText color='success' primary='customers'  >Customers</ListItemText>
+            </ListItemButton>
+            </Link>
+          </ListItem>
 
-               <ListItemText color='error' primary={text} />
+          <ListItem disablePadding>
+            <Link to='/packages'>
+            <ListItemButton>
+            <ListItemText color='success' primary='Packages'  >Packages</ListItemText>
+            </ListItemButton>
+            </Link>
+          </ListItem>
 
-              </ListItemButton>
-              </Link>
-            </ListItem>
-          ))}
+          <ListItem disablePadding>
+            <Link to='/invoices'>
+            <ListItemButton>
+            <ListItemText color='success' primary='Invoices'  >Invoices</ListItemText>
+            </ListItemButton>
+            </Link>
+          </ListItem>
         </List>
         <Divider />
        

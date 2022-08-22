@@ -7,17 +7,20 @@ import { Box,
 
 import { useState } from "react";
 
-const CreateInvoive = ({setdata,pack,customerName,setCustomers,customers,invoices,setInvoices,customeruniqeId}) => {
+import { useContext } from 'react';
+import DataContext from './ContextApi';
+
+
+const CreateInvoive = () => {
+
+  const {invoices,setInvoices,handelName} = useContext(DataContext)
 
 
     const [idInvoices,setIdInvoices] =useState(1)
-    // const [idPackages,setIdPackages] =useState('')
-    // const [customerId,setCustomerId] = useState(customeruniqeId)
 
-    const [customername,setCustomer] = useState(customerName)
+    const [customername,setCustomer] = useState(handelName)
     const [weight,setWeight] = useState('')
     const [price,setPrice] = useState(1)
-    // const [shippingOrder,setShippingOrder] = useState(1)
     
     
 

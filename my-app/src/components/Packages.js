@@ -16,11 +16,16 @@ import { TextField } from '@mui/material';
 import { useState } from 'react';
 
 
+import { useContext } from 'react';
+import DataContext from './ContextApi';
 
 
 
+const Packages = () => {
 
-const Packages = ({packagesData,onDelete,setPackages}) => {
+
+  const {packages,handelDeletePackages,setPackages,customers} = useContext(DataContext)
+
 
   const [id,setId] =useState('')
   const [customerid,setCustomer] = useState(1)
@@ -53,7 +58,7 @@ const Packages = ({packagesData,onDelete,setPackages}) => {
       shippingOrder,
 
     }
-    setPackages({items: packagesData.items.concat(data)})
+    setPackages({items: packages.items.concat(data)})
 
 
   }
@@ -149,7 +154,7 @@ const Packages = ({packagesData,onDelete,setPackages}) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Id Of Packages</TableCell>
-                  <TableCell>Customer Id</TableCell>
+                  <TableCell>Customer Name</TableCell>
                   <TableCell>Weight</TableCell>
                   <TableCell>Price</TableCell>
                 
@@ -168,7 +173,9 @@ const Packages = ({packagesData,onDelete,setPackages}) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {packagesData.items.map((row) => {
+                {packages.items.map((row) => {
+                  let item = customers.items.map((item) => item.id === row.customerid? item.name : '');
+                 
 
                   return (
                     <TableRow
@@ -183,8 +190,8 @@ const Packages = ({packagesData,onDelete,setPackages}) => {
 
                       <TableCell >
                     
-                       {row.customerid} 
-                      
+                        
+                          {item}
                                       
                         
                       </TableCell>
@@ -193,7 +200,7 @@ const Packages = ({packagesData,onDelete,setPackages}) => {
                       <TableCell >{row.price}</TableCell>
                       <TableCell ><Button
                       variant="contained"
-                      onClick={() => onDelete(row.id)}
+                      onClick={() => handelDeletePackages(row.id)}
                       >Delete</Button></TableCell>
                     </TableRow>
                   )

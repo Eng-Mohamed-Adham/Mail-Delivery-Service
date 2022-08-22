@@ -11,16 +11,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 
+import { useContext } from 'react';
+import DataContext from './ContextApi';
 
-
-// let data =JSON.parse( localStorage.getItem( 'invoices' ) );
 
 const  date = new Date()
 
 
 
-const DisplayInvoices = ({invoices}) => {
+const DisplayInvoices = () => {
 
+  const {invoices} = useContext(DataContext)
 
 
     return (
@@ -68,22 +69,7 @@ const DisplayInvoices = ({invoices}) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                    {/* {invoices.map((row) => {
-    
-                      return (
-                        <TableRow
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                          key={row.shippingOrder}
-                        >
-                          <TableCell component="th" scope="row">
-                            {row.idPackages}
-                          </TableCell>
-                          <TableCell  component="th" scope="row">{row.weight}</TableCell>
-                          <TableCell component="th" scope="row" >{row.price}</TableCell>
-                        
-                        </TableRow>
-                      )
-                    })} */}
+                   
                       <TableRow>
                       <TableCell align="center" colSpan={1}>
                           Weight:

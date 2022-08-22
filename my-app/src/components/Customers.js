@@ -13,10 +13,21 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
 
-const Customers = ({customersData,onDelete,handelName}) => {
+import { useContext } from 'react';
+import DataContext from './ContextApi';
 
-  
+
+const Customers = () => {
+
+  const {customers,isLoading,handelDeleteCustomers,handelName} = useContext(DataContext)
+
+
+
+  if(isLoading){
+    return <h2>Loadong...</h2>
+  }
     return (
+
         <TableContainer component={Paper} sx={{ marginTop:'60px'}}>
              <Typography
           sx={{ flex: '1 1 100%' ,marginTop:'50px'}}
@@ -41,7 +52,7 @@ const Customers = ({customersData,onDelete,handelName}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customersData.items.map((row,id) => {
+            {customers.items.map((row,id) => {
 
               return (
                 <TableRow
@@ -63,7 +74,7 @@ const Customers = ({customersData,onDelete,handelName}) => {
                     </TableCell>
 
                   <TableCell ><Button
-                  onClick={() => onDelete(row.id)}
+                  onClick={() => handelDeleteCustomers(row.id)}
                   variant="contained">Delete</Button></TableCell>
                 </TableRow>
               )
@@ -71,6 +82,7 @@ const Customers = ({customersData,onDelete,handelName}) => {
           </TableBody>
         </Table>
       </TableContainer>
+  
     );
 }
  
